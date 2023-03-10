@@ -1,0 +1,53 @@
+.Nav-bar{
+  padding: 0 20px;
+}
+
+.Top-nav-block{
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+}
+
+.Account-buttons-block{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 10px;
+  width: 13%;
+}
+
+.Account-button{
+  background-color: var(--Primary_blue);
+  color: white;
+  width: 50%;
+  height: 30px;
+  text-align: center;
+}
+
+#Logo{
+  width: 300px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.Mid-nav-block{
+  height: 33%;
+}
+
+.Bot-nav-block{
+  height: 33%;
+}
+
+.Pages-buttons-block{
+  display: flex;
+  gap: 25px;
+  color: var(--Secondary_blue);
+}
+
+#Banner{
+  width: 100%;
+  height: 75vh;
+  object-fit: cover;
+  opacity: 0.9;
+}

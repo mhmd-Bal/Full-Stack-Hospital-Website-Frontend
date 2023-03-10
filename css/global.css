@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400');
 
+:root {
+  --Primary_blue: #337AA6;
+  --Secondary_blue: #132B40
+}
+
 body {
   padding: 0;
   margin: 0;
