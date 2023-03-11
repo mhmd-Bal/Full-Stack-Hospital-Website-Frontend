@@ -1,0 +1,79 @@
+.Container{
+  display: flex;
+}
+
+.Control-panel-options{
+  width: 20%;
+  height: 100vh;
+  color: white;
+  background-color: var(--Secondary_blue);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Logo{
+  padding: 80px 0;
+}
+
+.Options{
+  width: 100%;
+  margin-top: 20px;
+}
+
+.Category-Buttons{
+  padding: 15px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.Category-Buttons:hover{
+  background-color: var(--Primary_blue);
+}
+
+
+.Control-panel-info{
+  width: 80%;
+  height: 100vh;
+}
+
+
+.Nav-bar{
+  background-color: var(--Primary_blue);
+  color: var(--Secondary_blue);
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 50px;
+  border: 3px solid black;
+  box-sizing: content-box;
+}
+
+.List-block{
+  margin-top: 30px;
+}
+
+.List-name-and-controls{
+  height: 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.Table-list{
+  height: 70vh;
+  overflow-y: scroll;
+  width: 90%;
+  margin: 15px 60px;
+  display: block;
+}
+
+.Admin, .Logout{
+  color: white;
+}
+
+#Logo{
+  width: 250px;
+  height: 100px;
+  object-fit: cover;
+}
