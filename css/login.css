@@ -1,0 +1,59 @@
+.form{
+  border: 10px solid var(--Primary_blue);
+  border-radius: 20px;
+  transition: all 0.1s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: -5px -5px 15px var(--Primary_blue),
+  5px 5px 15px var(--Primary_blue);
+  width:fit-content;
+  margin-top: 30px;
+  padding: 40px 20px;
+}
+
+.Login-block{
+  display: flex;
+  justify-content: center;
+  align-items: center;   
+  margin-top: 30px;
+}
+
+.Login-title{
+  color: var(--Secondary_blue);
+  font-size: 40px;
+}
+
+
+.Login-description{
+  max-width: 500px;
+  text-align: center;
+  color: var(--Secondary_blue);
+}
+
+#Email, #Password  {
+  border: 0;
+  border-bottom: 2px solid var(--Secondary_blue);
+  width: 60%;
+  height: 50px;
+  margin-top: 50px;
+}
+
+#Signin{
+  background-color: var(--Primary_blue);
+  margin: 0px 10px;
+  margin-top: 25px;
+  border: none;
+  border-radius: 10px;
+  width: 100px;
+  height: 50px;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+#Signin:hover{
+  transform: scale(1.2);
+}

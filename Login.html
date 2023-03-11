@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
+    <title>Login Page</title>
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/navbar.css">
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/login.css">
 </head>
 <body>
     <div class="Nav-bar">
@@ -32,11 +32,14 @@
             </div>
         </div>
     </div>
-    <div class="Banner-block"><img src="images/abt-banner.jpg" id="Banner"></div>
-    <div class="Categories-block">
-        <div class="Category"></div>
-        <div class="Category"></div>
-        <div class="Category"></div>
+    <div class="Login-block">
+      <div class="form">
+        <h1 class="Login-title">Log In</h1>
+        <p class="Login-description .text_small">In order to provide the best customer experience,we require all customers to be logged in.</p>
+        <input id="Email" type="text" name="Email" placeholder="Email Address">
+        <input id="Password" type="password" name="Password" placeholder="Password">
+        <button id="Signin">Sign In</button>
+      </div>
     </div>
 </body>
 </html>
