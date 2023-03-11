@@ -1,0 +1,66 @@
+.Form{
+    border: 10px solid var(--Primary_blue);
+    border-radius: 20px;
+    transition: all 0.1s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: -5px -5px 15px var(--Primary_blue),
+    5px 5px 15px var(--Primary_blue);
+    width:fit-content;
+    margin-top: 30px;
+    padding: 40px 20px;
+}
+
+.Register-block{
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+    margin-top: 30px;
+}
+
+
+.Register-title{
+    color: var(--Secondary_blue);
+}
+
+
+.Register-description{
+    width: 500px;
+    text-align: center;
+    color: var(--Secondary_blue);
+}
+
+#Email, #Password, #Verify_password, #Last_name, #First_name  {
+    border: 0;
+    border-bottom: 2px solid var(--Secondary_blue);
+    width: 60%;
+    height: 50px;
+    margin-top: 50px;
+}
+
+#Signup-button{
+    background-color: var(--Primary_blue);
+    margin: 0px 10px;
+    margin-top: 25px;
+    border: none;
+    border-radius: 10px;
+    width: 100px;
+    height: 50px;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+#Signup-button:hover{
+    opacity: 0.9;
+}
+
+a {
+    text-decoration: none;
+    font-weight: bold;
+}

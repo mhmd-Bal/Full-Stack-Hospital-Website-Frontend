@@ -23,7 +23,6 @@
 
 .Login-title{
   color: var(--Secondary_blue);
-  font-size: 40px;
 }
 
 
@@ -52,8 +51,15 @@
   color: white;
   font-size: 20px;
   cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s;
 }
 
 #Signin:hover{
-  transform: scale(1.2);
+  opacity: 0.9;
+}
+
+a {
+  text-decoration: none;
+  font-weight: bold;
 }
