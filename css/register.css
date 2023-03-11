@@ -33,7 +33,7 @@
     color: var(--Secondary_blue);
 }
 
-#Email, #Password, #Verify_password, #Last_name, #First_name  {
+#Email, #Password, #Verify_password, #Name, #Date_of_birth  {
     border: 0;
     border-bottom: 2px solid var(--Secondary_blue);
     width: 60%;
