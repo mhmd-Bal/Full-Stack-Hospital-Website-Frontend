@@ -217,7 +217,6 @@ const AssignEmployee = async () => {
 
   const response = await ExecutePostAPI(assign_employee, data);
   const assign_function_employees_title = document.getElementById("Assignfunction-employees-title");
-  console.log(response);
   PrintMessage(assign_function_employees_title, response.data.response);
   ReloadIfSuccessful(response.data.response);
 }
@@ -289,7 +288,6 @@ const EditEmployeeInformation = async (user_id) => {
   data.append('user_id', user_id);
 
   const response = await ExecutePostAPI(edit_employee_info_url, data);
-  console.log(response);
   if(response.data.response == "Employee Info Added!"){
     alert("Employee Info Added!");
   }else if(response.data.response == "Employee Info Updated!"){
@@ -407,6 +405,7 @@ const LoadProfile = async () => {
   const profile_employee_edit_in_block_button = document.getElementById("Profile-employee-edit-in-block-button");
   const profile_logout_button = document.getElementById("Profile-logout");
   const assign_services_in_block_button = document.getElementById("Assign-services-in-block-button");
+  const request_services_in_block_button = document.getElementById("Request-services-in-block-button");
 
   for(let i=0; i<profile_category_buttons.length; i++){
     profile_category_buttons[i].addEventListener('click', (event) => EnableTheChosenCategory(event));
