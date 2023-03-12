@@ -118,6 +118,24 @@ const EnableTheChosenCategory = (event) => {
   event.currentTarget.lists[index].classList.remove("List-disabled");
 }
 
+const FillTheAssignedPatientsCategory = async () => {
+  const assigned_patients_url = baseurl + "GetAllAssignedPatients.php";
+  const response = await ExecuteGetAPI(assigned_patients_url);
+  console.log(response);
+  const assigned_patients = response.data;
+  const assigned_patients_list = document.getElementById("Assigned-patients-list");
+  GetEachAssignedPatient(assigned_patients, assigned_patients_list);
+}
+
+
+
+const FillTheCategories = () => {
+  FillTheAssignedPatientsCategory();
+  FillTheAssignedEmployeesCategory();
+}
+
+
+
 //Page Functions
 
 const LoadRegistration = async () => {
@@ -169,5 +187,5 @@ const LoadAdmin = async () => {
     category_buttons[i].lists = category_lists;
   }
 
-  
+  FillTheCategories();
 }
