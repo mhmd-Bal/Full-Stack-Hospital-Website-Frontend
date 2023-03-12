@@ -89,7 +89,8 @@ const CheckUser = async () => {
   return {
     authentication: response.data.authentication,
     name: response.data.name,
-    usertype: response.data.usertype 
+    usertype: response.data.usertype,
+    userid: response.data.userid
   }
 }
 
@@ -257,6 +258,24 @@ const DisableEverythingRelatedToPatients = () => {
   }
 }
 
+const EditPatientInformation = async (user_id) => {
+  const edit_patient_info_url = baseurl + "EditPatientProfile.php";
+  const blood_type = document.getElementById("Patient-blood-type-input").value;
+  const ehr = document.getElementById("Patient-ehr-input").value;
+
+  data = new FormData();
+  data.append('blood_type', blood_type);
+  data.append('ehr', ehr);
+  data.append('user_id', user_id);
+
+  const response = await ExecutePostAPI(edit_patient_info_url, data);
+  if(response.data.response == "Patient Info Added!"){
+    alert("Patient Info Added!");
+  }else if(response.data.response == "Patient Info Updated!"){
+    alert("Patient Info Updated!");
+  }
+}
+
 
 //Page Functions
 
@@ -322,9 +341,12 @@ const LoadAdmin = async () => {
 }
 
 const LoadProfile = async () => {
-  const {authentication,name,usertype} = await CheckUser();
+  const {authentication,userid,name,usertype} = await CheckUser();
   const profile_category_buttons = document.getElementsByClassName("Profile-category-buttons");
   const account_information_block = document.getElementsByClassName("Account-information-block");
+  const profile_patient_edit_in_block_button = document.getElementById("Profile-patient-edit-in-block-button");
+  const profile_logout_button = document.getElementById("Profile-logout");
+
   for(let i=0; i<profile_category_buttons.length; i++){
     profile_category_buttons[i].addEventListener('click', (event) => EnableTheChosenCategory(event));
     profile_category_buttons[i].index = i;
@@ -339,4 +361,7 @@ const LoadProfile = async () => {
       DisableEverythingRelatedToPatients();
     }
   }
+
+  profile_patient_edit_in_block_button.addEventListener("click", () => EditPatientInformation(userid));
+  profile_logout_button.addEventListener("click", () => LogoutUser());
 }
