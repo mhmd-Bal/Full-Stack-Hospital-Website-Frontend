@@ -127,6 +127,14 @@ const FillTheAssignedPatientsCategory = async () => {
   GetEachAssignedPatient(assigned_patients, assigned_patients_list);
 }
 
+const FillTheAssignedEmployeesCategory = async () => {
+  const assigned_employees_url = baseurl + "GetAllAssignedEmployees.php";
+  const response = await ExecuteGetAPI(assigned_employees_url);
+  const assigned_employees = response.data;
+  const assigned_employees_list = document.getElementById("Assigned-employees-list");
+  GetEachAssignedPatient(assigned_employees, assigned_employees_list);
+}
+
 
 
 const FillTheCategories = () => {
