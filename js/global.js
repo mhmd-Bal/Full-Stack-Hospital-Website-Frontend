@@ -1,5 +1,7 @@
 const baseurl = "http://localhost/Full-Stack-Hopital-Website/Full-Stack-Hospital-Website-Backend/";
 
+// GLobal Functions
+
 const ExecuteGetAPI = async (api_url) => {
   try{
     return await axios(api_url);
@@ -16,43 +18,75 @@ const ExecutePostAPI = async (api_url, api_data, api_token = null) => {
   }
 }
 
-const MakeFormData = (list_of_data) => {
-  let data = new FormData();
-  for(let i=0; i<list_of_data.length; i++){
-    console.log(Object.keys(list_of_data[i])[0]);
-    data.append(`${Object.keys(list_of_data[i])[0]}`, list_of_data[i].value);
-  }
-  console.log(data);
-  return data;
-}
+// const MakeFormData = (list_of_data) => {
+//   let data = new FormData();
+//   for(let i=0; i<list_of_data.length; i++){
+//     console.log(Object.keys(list_of_data[i])[0] );
+//     data.append(`${Object.keys(list_of_data[i])[0]}`, list_of_data[i].value);
+//   }
+//   console.log(data);
+//   return data;
+// }
 
 
-const PostRegistrationData = async (url) => {
-  let name = document.getElementById("Name");
-  let dob = document.getElementById("Date-of-birth");
-  let email = document.getElementById("Email");
-  let password = document.getElementById("Password");
-  let verify_password = document.getElementById("Verify-password");
+const PostRegistrationData = async (register_url) => {
+  let name = document.getElementById("Name").value;
+  let dob = document.getElementById("Date-of-birth").value;
+  let email = document.getElementById("Email").value;
+  let password = document.getElementById("Password").value;
+  let verify_password = document.getElementById("Verify-password").value;
   
-  let list_of_data = [];
-  list_of_data.push(name,dob,email,password,verify_password);
-  console.log(list_of_data);
+  // let list_of_data = [];
+  // list_of_data.push(name,dob,email,password,verify_password);
+  // console.log(list_of_data);
 
   if(password == verify_password){
-    let data =  MakeFormData(list_of_data);
-    const response = await ExecutePostAPI(url, data);
-    console.log(response);
+    let data = new FormData();
+    data.append('name', name);
+    data.append('dob', dob);
+    data.append('email', email);
+    data.append('password', password);
 
+    const response = await ExecutePostAPI(register_url, data);
+    console.log(response);
   }else{
     console.log("Not the same password");
+  }
+}
+
+const PostLoginData = async (login_url) => {
+  const email = document.getElementById("Email").value;
+  const password = document.getElementById("Password").value;
+
+  data = new FormData();
+  data.append('email', email);
+  data.append('password', password);
+
+  const response = await ExecutePostAPI(login_url, data);
+  console.log(response);
+  window.sessionStorage.setItem("token", response.data.token);
+  RedirectUser(response.data.usertype);
+} 
+
+const RedirectUser = (usertype) => {
+  if(usertype == 1 || usertype == 2){
+    window.location.href = "index.html";
+  }else{
+    window.location.href = "Admin.html";
   }
 }
 
 //Page Functions
 
 const LoadRegistration = async () => {
-  const register_patient_url = baseurl + "Register.php";
+  const register_url = baseurl + "Register.php";
   const register_button = document.getElementById("Signup-button");
-  register_button.addEventListener("click", () => PostRegistrationData(register_patient_url));
+  register_button.addEventListener("click", () => PostRegistrationData(register_url));
 }
 
+
+const LoadSignin = async () => {
+  const login_url = baseurl + "Login.php";
+  const signin_button = document.getElementById("Signin");
+  signin_button.addEventListener("click", () => PostLoginData(login_url));
+}
