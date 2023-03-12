@@ -135,6 +135,22 @@ const FillTheAssignedEmployeesCategory = async () => {
   GetEachAssignedPatient(assigned_employees, assigned_employees_list);
 }
 
+const GetEachAssignedPatient = (assigned_patients, assigned_patients_list) => {
+  for(let i=0; i<assigned_patients.length; i++){
+    PrintAssignedPatientInTable(assigned_patients[i], assigned_patients_list);
+  }
+}
+
+const PrintAssignedPatientInTable = (assigned_patient, assigned_patients_list) => {
+  let new_row = document.createElement("tr");
+  assigned_patients_list.insertAdjacentElement('beforeend', new_row);
+
+  const keys = Object.keys(assigned_patient);
+  keys.forEach((key, index) => {
+    AddThisElementToRow(new_row, eval(`assigned_patient.${key}`));
+  });
+}
+
 
 
 const FillTheCategories = () => {
