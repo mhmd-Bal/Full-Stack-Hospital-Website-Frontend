@@ -13,16 +13,16 @@
       <div class="Control-panel-options">
         <a href="index.html"><img src="images/World-Health-Organization-WHO-Logo.png" id="Logo"></a>
         <div class="Options">
-          <div class="Category-Buttons Button-enabled" id="Dashboard-button">
+          <div class="Category-buttons Button-enabled" id="Dashboard-button">
             Dashboard
           </div>
-          <div class="Category-Buttons" id="Assign-patients-button">
+          <div class="Category-buttons" id="Assign-patients-button">
             Assign Patients
           </div>
-          <div class="Category-Buttons" id="Assign-doctors-button">
+          <div class="Category-buttons" id="Assign-doctors-button">
             Assign Doctors
           </div>
-          <div class="Category-Buttons" id="Services-button">
+          <div class="Category-buttons" id="Services-button">
             Services
           </div>
         </div>
@@ -30,14 +30,41 @@
       <div class="Control-panel-info">
         <div class="Nav-bar">
           <div class="Admin">Administrator</div>
-          <div class="Logout">Logout</div>
+          <div class="Logout" id="Logout-button">Logout</div>
         </div>
 
-        <div class="List-block" id="List-of-users-block">
+        <div class="List-block" id="Dashboard-block">
           <div class="List-name-and-controls">
+            <h3 class="List-title" id="Dashboard-title">Dashboard</h3>
           </div>
+          <div class="Table-list"></div>
+        </div>
+        <div class="List-block List-disabled" id="Assign-patients-block">
+          <div class="List-name-and-controls">
+            <h3 class="List-title" id="Assign-patients-title">List of patients</h3>
+          </div>
+          <div class="Table-list"></div>
+        </div>
+        <div class="List-block List-disabled" id="Assign-employees-block">
+          <div class="List-name-and-controls">
+            <h3 class="List-title" id="Assign-employees-title">List of Employees</h3>
+          </div>
+          <div class="Table-list"></div>
+        </div>
+        <div class="List-block List-disabled" id="Services-block">
+          <div class="List-name-and-controls">
+            <h3 class="List-title" id="Services-title">List of Services</h3>
+          </div>
+          <div class="Table-list"></div>
         </div>
       </div>
     </div>
+
+    <script src="js/axion.min.js"></script>
+    <script src="js/global.js"></script>
+    <script>
+        LoadAdmin();
+    </script>
+
   </body>
 </html>

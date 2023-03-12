@@ -95,6 +95,29 @@ const LogoutUser = () => {
   window.location.href = "index.html";
 }
 
+const CheckIfAdmin = async () => {
+  const {authentication,name,usertype} = await CheckUser();
+  if(authentication != "Successful" || usertype != 3){
+    window.location.href = "index.html";
+  }
+}
+
+const DisableEveryCategory = (event) => {
+  for(let i=0; i<event.currentTarget.buttons.length; i++){
+    event.currentTarget.buttons[i].classList.remove("Button-enabled");
+  }
+  for(let i=0; i<event.currentTarget.lists.length; i++){
+    event.currentTarget.lists[i].classList.add("List-disabled");
+  }
+}
+
+const EnableTheChosenCategory = (event) => {
+  DisableEveryCategory(event);
+  let index = event.currentTarget.index;
+  event.currentTarget.buttons[index].classList.add("Button-enabled");
+  event.currentTarget.lists[index].classList.remove("List-disabled");
+}
+
 //Page Functions
 
 const LoadRegistration = async () => {
@@ -131,4 +154,19 @@ const LoadIndex = async () => {
   }
   user_buttons[1].addEventListener('click', () => LogoutUser());
 }
+ 
+const LoadAdmin = async () => {
+  const logout_button = document.getElementById("Logout-button");
+  const category_buttons = document.getElementsByClassName("Category-buttons");
+  const category_lists = document.getElementsByClassName("List-block");
+  CheckIfAdmin();
+  logout_button.addEventListener('click', () => LogoutUser());
+  
+  for(let i=0; i<category_buttons.length; i++){
+    category_buttons[i].addEventListener('click', (event) => EnableTheChosenCategory(event));
+    category_buttons[i].index = i;
+    category_buttons[i].buttons = category_buttons;
+    category_buttons[i].lists = category_lists;
+  }
 
+}

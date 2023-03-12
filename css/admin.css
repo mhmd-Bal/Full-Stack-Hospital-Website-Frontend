@@ -21,13 +21,13 @@
   margin-top: 20px;
 }
 
-.Category-Buttons{
+.Category-buttons{
   padding: 15px;
   transition: 0.3s;
   cursor: pointer;
 }
 
-.Category-Buttons:hover{
+.Category-buttons:hover{
   background-color: var(--Primary_blue);
 }
 
@@ -53,12 +53,20 @@
 }
 
 .List-name-and-controls{
-  height: 10%;
+  height: 6vh;
+  padding-left: 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+.List-disabled{
+  display: none;
+}
+
+.List-title{
+  margin-top: 0;
+}
 
 .Table-list{
   height: 70vh;
@@ -72,8 +80,16 @@
   color: white;
 }
 
+#Logout-button{
+  cursor: pointer;
+}
+
 #Logo{
   width: 250px;
   height: 100px;
   object-fit: cover;
+}
+
+.Button-enabled{
+  background-color: var(--Primary_blue);
 }
