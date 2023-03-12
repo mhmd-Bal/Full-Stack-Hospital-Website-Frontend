@@ -316,7 +316,6 @@ const AssignServiceToPatient = async (employee_id) => {
   const description = document.getElementById("Assign-services-description-input").value;
   const cost = document.getElementById("Assign-services-cost-input").value;
   const department_id = document.getElementById("Assign-services-department-id-input").value;
-  const status = "Approved";
 
   data = new FormData();
   data.append('patient_id', patient_id);
@@ -324,13 +323,28 @@ const AssignServiceToPatient = async (employee_id) => {
   data.append('cost', cost);
   data.append('department_id', department_id);
   data.append('employee_id', employee_id);
-  data.append('status', status);
 
   const response = await ExecutePostAPI(assign_service_info_url, data);
-  console.log(response);
-  if(response.data.response == "Service Assigned!"){
-    alert("Service Assigned!");
-  }
+  alert(response.data.response);
+
+}
+
+const RequestServiceFromAdmin = async (patient_id) => {
+  const request_service_info_url = baseurl + "RequestServices.php";
+  const employee_id = document.getElementById("Request-services-employee-id-input").value;
+  const description = document.getElementById("Request-services-description-input").value;
+  const cost = document.getElementById("Request-services-cost-input").value;
+  const department_id = document.getElementById("Request-services-department-id-input").value;
+
+  data = new FormData();
+  data.append('employee_id', employee_id);
+  data.append('description', description);
+  data.append('cost', cost);
+  data.append('department_id', department_id);
+  data.append('patient_id', patient_id);
+
+  const response = await ExecutePostAPI(request_service_info_url, data);
+  alert(response.data.response);
 }
 
 
@@ -428,5 +442,6 @@ const LoadProfile = async () => {
   profile_patient_edit_in_block_button.addEventListener("click", () => EditPatientInformation(userid));
   profile_employee_edit_in_block_button.addEventListener("click", () => EditEmployeeInformation(userid));
   assign_services_in_block_button.addEventListener("click", () => AssignServiceToPatient(userid));
+  request_services_in_block_button.addEventListener("click", () => RequestServiceFromAdmin(userid));
   profile_logout_button.addEventListener("click", () => LogoutUser());
 }
