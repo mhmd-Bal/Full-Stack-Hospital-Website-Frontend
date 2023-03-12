@@ -233,6 +233,30 @@ const ReloadIfSuccessful = (successful) => {
   }
 }
 
+const DisableEverythingRelatedToEmployees = () => {
+  const profile_assign_button = document.getElementById("Profile-assign-button");
+  const profile_edit_employee_inputs = document.getElementsByClassName("Profile-edit-employee-inputs");
+  const profile_employee_edit_in_block_button = document.getElementById("Profile-employee-edit-in-block-button");
+  profile_employee_edit_in_block_button.classList.add("List-disabled");
+  profile_assign_button.classList.add("List-disabled");
+  for(let i=0; i<profile_edit_employee_inputs.length; i++){
+    profile_edit_employee_inputs[i].classList.add("List-disabled");
+  }
+}
+
+const DisableEverythingRelatedToPatients = () => {
+  const profile_request_button = document.getElementById("Profile-request-button");
+  const profile_invoice_button = document.getElementById("Profile-invoice-button");
+  const profile_edit_patient_inputs = document.getElementsByClassName("Profile-edit-patient-inputs");
+  const profile_patient_edit_in_block_button = document.getElementById("Profile-patient-edit-in-block-button");
+  profile_invoice_button.classList.add("List-disabled");
+  profile_request_button.classList.add("List-disabled");
+  profile_patient_edit_in_block_button.classList.add("List-disabled");
+  for(let i=0; i<profile_edit_patient_inputs.length; i++){
+    profile_edit_patient_inputs[i].classList.add("List-disabled");
+  }
+}
+
 
 //Page Functions
 
@@ -310,13 +334,9 @@ const LoadProfile = async () => {
 
   if(authentication == "Successful"){
     if(usertype == 1){
-      const profile_assign_button = document.getElementById("Profile-assign-button");
-      profile_assign_button.classList.add("Disabled");
+      DisableEverythingRelatedToEmployees();
     }else if(usertype == 2){
-      const profile_request_button = document.getElementById("Profile-request-button");
-      const profile_invoice_button = document.getElementById("Profile-invoice-button");
-      profile_invoice_button.classList.add("Disabled");
-      profile_request_button.classList.add("Disabled");
+      DisableEverythingRelatedToPatients();
     }
   }
 }
