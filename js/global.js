@@ -276,6 +276,26 @@ const EditPatientInformation = async (user_id) => {
   }
 }
 
+const EditEmployeeInformation = async (user_id) => {
+  const edit_employee_info_url = baseurl + "EditEmployeeProfile.php";
+  const ssn = document.getElementById("Employee-ssn-input").value;
+  const date_joined = document.getElementById("Employee-date-joined-input").value;
+  const position = document.getElementById("Employee-position-input").value;
+
+  data = new FormData();
+  data.append('ssn', ssn);
+  data.append('date_joined', date_joined);
+  data.append('position', position);
+  data.append('user_id', user_id);
+
+  const response = await ExecutePostAPI(edit_employee_info_url, data);
+  if(response.data.response == "Employee Info Added!"){
+    alert("Employee Info Added!");
+  }else if(response.data.response == "Employee Info Updated!"){
+    alert("Employee Info Updated!");
+  }
+}
+
 
 //Page Functions
 
@@ -345,6 +365,7 @@ const LoadProfile = async () => {
   const profile_category_buttons = document.getElementsByClassName("Profile-category-buttons");
   const account_information_block = document.getElementsByClassName("Account-information-block");
   const profile_patient_edit_in_block_button = document.getElementById("Profile-patient-edit-in-block-button");
+  const profile_employee_edit_in_block_button = document.getElementById("Profile-employee-edit-in-block-button");
   const profile_logout_button = document.getElementById("Profile-logout");
 
   for(let i=0; i<profile_category_buttons.length; i++){
@@ -363,5 +384,6 @@ const LoadProfile = async () => {
   }
 
   profile_patient_edit_in_block_button.addEventListener("click", () => EditPatientInformation(userid));
+  profile_employee_edit_in_block_button.addEventListener("click", () => EditEmployeeInformation(userid));
   profile_logout_button.addEventListener("click", () => LogoutUser());
 }
