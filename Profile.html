@@ -35,12 +35,12 @@
 
     <div class="Main-body">
         <div class="Control-panel">
-            <div>Account Dashboard</div>
-            <div>Edit Profile</div>
-            <div>Request Services</div>
-            <div>Assign Services</div>
-            <div>Show Invoice</div>
-            <div>Log out</div>
+            <div id="Profile-dashboard-button">Account Dashboard</div>
+            <div id="Profile-edit-button">Edit Profile</div>
+            <div id="Profile-request-button">Request Services</div>
+            <div id="Profile-assign-button">Assign Services</div>
+            <div id="Profile-invoice-button">Show Invoice</div>
+            <div id="Profile-logout">Log out</div>
         </div>
         <div class="Account-information-block">
             <h1 class="Welcome">Hello, User!</h1>
@@ -58,5 +58,12 @@
             </div>
         </div>
     </div>
+
+    <script src="js/axion.min.js"></script>
+    <script src="js/global.js"></script>
+    <script>
+        LoadProfile();
+    </script>
+
 </body>
 </html>

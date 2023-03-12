@@ -48,7 +48,9 @@ const PostRegistrationData = async (register_url) => {
     data.append('password', password);
 
     const response = await ExecutePostAPI(register_url, data);
-    console.log(response);
+    if(response.data.status == "User Added!"){
+      window.location.href = "Login.html";
+    }
   }else{
     console.log("Not the same password");
   }
@@ -63,6 +65,7 @@ const PostLoginData = async (login_url) => {
   data.append('password', password);
 
   const response = await ExecutePostAPI(login_url, data);
+  console.log(response);
   window.sessionStorage.setItem("token", response.data.token);
   RedirectUser(response.data.usertype);
 } 
@@ -248,18 +251,18 @@ const LoadSignin = async () => {
 
 const LoadIndex = async () => {
   const {authentication,name,usertype} = await CheckUser();
-  const nouser_buttons = document.getElementsByClassName("Account-nouser-button");
+  const no_user_buttons = document.getElementsByClassName("Account-nouser-button");
   const user_buttons = document.getElementsByClassName("Account-user-button");
   if(authentication == "Successful"){
-    for(let i=0; i<nouser_buttons.length; i++){
-      nouser_buttons[i].classList.add("Disabled");
+    for(let i=0; i<no_user_buttons.length; i++){
+      no_user_buttons[i].classList.add("Disabled");
     }
     for(let i=0; i<user_buttons.length; i++){
       user_buttons[i].classList.remove("Disabled");
     }
   }else if(authentication == "There is no user logged in"){
-    for(let i=0; i<nouser_buttons.length; i++){
-      nouser_buttons[i].classList.remove("Disabled");
+    for(let i=0; i<no_user_buttons.length; i++){
+      no_user_buttons[i].classList.remove("Disabled");
     }
     for(let i=0; i<user_buttons.length; i++){
       user_buttons[i].classList.add("Disabled");
@@ -292,4 +295,19 @@ const LoadAdmin = async () => {
     function_buttons[i].lists = category_lists;
   }
   
+}
+
+const LoadProfile = async () => {
+  const {authentication,name,usertype} = await CheckUser();
+  if(authentication == "Successful"){
+    if(usertype == 1){
+      const profile_assign_button = document.getElementById("Profile-assign-button");
+      profile_assign_button.classList.add("Disabled");
+    }else if(usertype == 2){
+      const profile_request_button = document.getElementById("Profile-request-button");
+      const profile_invoice_button = document.getElementById("Profile-invoice-button");
+      profile_invoice_button.classList.add("Disabled");
+      profile_request_button.classList.add("Disabled");
+    }
+  }
 }
