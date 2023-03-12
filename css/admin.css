@@ -27,10 +27,20 @@
   cursor: pointer;
 }
 
+.Admin-buttons{
+  background-color: var(--Primary_blue);
+  border: 2px solid var(--Secondary_blue);
+  border-radius: 5px;
+  padding: 7px 15px;
+  margin-right: 50px;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+}
+
 .Category-buttons:hover{
   background-color: var(--Primary_blue);
 }
-
 
 .Control-panel-info{
   width: 80%;
@@ -107,4 +117,26 @@ th,td{
 
 tr:nth-child(even){
   background-color: #dddddd;
+}
+
+.Assign-block{
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+
+.Admin-in-block-buttons{
+  background-color: var(--Primary_blue);
+  margin-top: 50px;
+  border: none;
+  border-radius: 10px;
+  width: 100px;
+  height: 50px;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
 }

@@ -162,6 +162,17 @@ const FillTheCategories = () => {
   FillTheAssignedEmployeesCategory();
 }
 
+const EnableTheAssignFunction = (event) => {
+  DisableEveryCategory(event);
+  if(event.currentTarget.index == 0){
+    event.currentTarget.lists[4].classList.remove("List-disabled");
+    event.currentTarget.buttons[1].classList.add("Button-enabled");
+  }else if(event.currentTarget.index == 1){
+    event.currentTarget.lists[5].classList.remove("List-disabled");
+    event.currentTarget.buttons[2].classList.add("Button-enabled");
+  }
+}
+
 
 
 //Page Functions
@@ -205,6 +216,7 @@ const LoadAdmin = async () => {
   const logout_button = document.getElementById("Logout-button");
   const category_buttons = document.getElementsByClassName("Category-buttons");
   const category_lists = document.getElementsByClassName("List-block");
+  const function_buttons = document.getElementsByClassName("Function-buttons");
   CheckIfAdmin();
   logout_button.addEventListener('click', () => LogoutUser());
   
@@ -216,4 +228,12 @@ const LoadAdmin = async () => {
   }
 
   FillTheCategories();
+
+  for(let i=0; i<function_buttons.length; i++){
+    function_buttons[i].addEventListener("click", (event) => EnableTheAssignFunction(event));
+    function_buttons[i].index = i;
+    function_buttons[i].buttons = category_buttons;
+    function_buttons[i].lists = category_lists;
+  }
+  
 }
