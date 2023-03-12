@@ -195,6 +195,29 @@ const AssignPatient = async () => {
   ReloadIfSuccessful(response.data.response);
 }
 
+const AssignEmployee = async () => {
+  const assign_employee = baseurl + "AssignEmployee.php";
+
+  let hospital_id = document.getElementById("Assign-employee-hospital-id").value;
+  let user_id = document.getElementById("Assign-employee-employee-id").value;
+  let is_active = document.getElementById("Assign-employee-is-active").value;
+  let date_joined = document.getElementById("Assign-employee-date-joined").value;
+  let date_left = document.getElementById("Assign-employee-date-left").value;
+
+  let data = new FormData();
+  data.append('hospital_id', hospital_id);
+  data.append('user_id', user_id);
+  data.append('is_active', is_active);
+  data.append('date_joined', date_joined);
+  data.append('date_left', date_left);
+
+  const response = await ExecutePostAPI(assign_employee, data);
+  const assign_function_employees_title = document.getElementById("Assignfunction-employees-title");
+  console.log(response);
+  PrintMessage(assign_function_employees_title, response.data.response);
+  ReloadIfSuccessful(response.data.response);
+}
+
 const PrintMessage = (place, message) => {
   place.textContent = message; 
 }
