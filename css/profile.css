@@ -60,6 +60,43 @@ body{
   margin-bottom: 30px;
 }
 
-.Disabled{
+.List-disabled{
   display: none;
+}
+
+.Button-enabled{
+  background-color: var(--Primary_blue);
+  color: white;
+}
+
+.Profile-category-buttons{
+  border-radius: 8px;
+  padding: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.Profile-category-buttons:hover{
+  background-color: var(--Primary_blue);
+  color: white;
+}
+
+.Input-for-user  {
+  border: 0;
+  border-bottom: 2px solid black;
+  width: 30%;
+  height: 50px;
+  margin-top: 50px;
+}
+
+.Profile-in-block-buttons{
+  background-color: var(--Primary_blue);
+  margin-top: 50px;
+  border: none;
+  border-radius: 10px;
+  width: 100px;
+  height: 50px;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
 }

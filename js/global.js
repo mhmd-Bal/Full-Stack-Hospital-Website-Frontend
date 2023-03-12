@@ -299,6 +299,15 @@ const LoadAdmin = async () => {
 
 const LoadProfile = async () => {
   const {authentication,name,usertype} = await CheckUser();
+  const profile_category_buttons = document.getElementsByClassName("Profile-category-buttons");
+  const account_information_block = document.getElementsByClassName("Account-information-block");
+  for(let i=0; i<profile_category_buttons.length; i++){
+    profile_category_buttons[i].addEventListener('click', (event) => EnableTheChosenCategory(event));
+    profile_category_buttons[i].index = i;
+    profile_category_buttons[i].buttons = profile_category_buttons;
+    profile_category_buttons[i].lists = account_information_block;
+  }
+
   if(authentication == "Successful"){
     if(usertype == 1){
       const profile_assign_button = document.getElementById("Profile-assign-button");
