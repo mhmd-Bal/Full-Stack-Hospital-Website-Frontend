@@ -190,9 +190,22 @@ const AssignPatient = async () => {
   data.append('date_left', date_left);
 
   const response = await ExecutePostAPI(assign_patient, data);
-  console.log(response);
+  const assign_function_patients_title = document.getElementById("Assignfunction-patients-title");
+  PrintMessage(assign_function_patients_title, response.data.response);
+  ReloadIfSuccessful(response.data.response);
 }
 
+const PrintMessage = (place, message) => {
+  place.textContent = message; 
+}
+
+const ReloadIfSuccessful = (successful) => {
+  if(successful == "Patient Assigned!" || successful == "Employee Assigned!"){
+    setTimeout(() => {
+      window.location.reload();
+    }, 2000);
+  }
+}
 
 
 //Page Functions
