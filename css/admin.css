@@ -140,3 +140,11 @@ tr:nth-child(even){
   font-size: 20px;
   cursor: pointer;
 }
+
+.Input-for-user  {
+  border: 0;
+  border-bottom: 2px solid black;
+  width: 30%;
+  height: 50px;
+  margin-top: 50px;
+}
