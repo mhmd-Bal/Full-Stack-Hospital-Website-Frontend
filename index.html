@@ -14,8 +14,10 @@
         <div class="Top-nav-block">
             <a href="index.html"><img src="images/World-Health-Organization-WHO-Logo.png" id="Logo"></a>
             <div class="Account-buttons-block">
-                <p class="Account-button"><a href="Login.html">Sign in</a></p>
-                <p class="Account-button"><a href="Register.html">Sign up</a></p>
+                <p class="Account-nouser-button"><a href="Login.html">Sign in</a></p>
+                <p class="Account-nouser-button"><a href="Register.html">Sign up</a></p>
+                <p class="Account-user-button Disabled"><a href="Profile.html">Profile</a></p>
+                <p class="Account-user-button Disabled"><a>Logout</a></p>
             </div>
         </div>
         <div class="Bot-nav-block">
@@ -38,5 +40,11 @@
         <div class="Category"></div>
         <div class="Category"></div>
     </div>
+
+    <script src="js/axion.min.js"></script>
+    <script src="js/global.js"></script>
+    <script>
+        LoadIndex();
+    </script>
 </body>
 </html>

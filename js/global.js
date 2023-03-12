@@ -10,9 +10,9 @@ const ExecuteGetAPI = async (api_url) => {
   }
 }
 
-const ExecutePostAPI = async (api_url, api_data, api_token = null) => {
+const ExecutePostAPI = async (api_url, api_data) => {
   try{
-    return await axios.post(api_url, api_data, api_token);
+    return await axios.post(api_url, api_data);
   }catch(error){
     console.log(error);
   }
@@ -63,7 +63,6 @@ const PostLoginData = async (login_url) => {
   data.append('password', password);
 
   const response = await ExecutePostAPI(login_url, data);
-  console.log(response);
   window.sessionStorage.setItem("token", response.data.token);
   RedirectUser(response.data.usertype);
 } 
@@ -74,6 +73,26 @@ const RedirectUser = (usertype) => {
   }else{
     window.location.href = "Admin.html";
   }
+}
+
+const CheckUser = async () => {
+  const checkuser_url = baseurl + "Checkuser.php";
+  let token = window.sessionStorage.getItem("token");
+  let data = new FormData();
+  data.append('token', token);
+
+  const response = await ExecutePostAPI(checkuser_url, data);
+  console.log(response);
+  return {
+    authentication: response.data.authentication,
+    name: response.data.name,
+    usertype: response.data.usertype 
+  }
+}
+
+const LogoutUser = () => {
+  window.sessionStorage.removeItem("token");
+  window.location.href = "index.html";
 }
 
 //Page Functions
@@ -89,4 +108,26 @@ const LoadSignin = async () => {
   const login_url = baseurl + "Login.php";
   const signin_button = document.getElementById("Signin");
   signin_button.addEventListener("click", () => PostLoginData(login_url));
+}
+
+const LoadIndex = async () => {
+  const {authentication,name,usertype} = await CheckUser();
+  const nouser_buttons = document.getElementsByClassName("Account-nouser-button");
+  const user_buttons = document.getElementsByClassName("Account-user-button");
+  if(authentication == "Successful"){
+    for(let i=0; i<nouser_buttons.length; i++){
+      nouser_buttons[i].classList.add("Disabled");
+    }
+    for(let i=0; i<user_buttons.length; i++){
+      user_buttons[i].classList.remove("Disabled");
+    }
+  }else if(authentication == "There is no user logged in"){
+    for(let i=0; i<nouser_buttons.length; i++){
+      nouser_buttons[i].classList.remove("Disabled");
+    }
+    for(let i=0; i<user_buttons.length; i++){
+      user_buttons[i].classList.add("Disabled");
+    }
+  }
+  user_buttons[1].addEventListener('click', () => LogoutUser());
 }
