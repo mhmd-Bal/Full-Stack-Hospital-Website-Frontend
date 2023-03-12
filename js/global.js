@@ -151,7 +151,11 @@ const PrintAssignedPatientInTable = (assigned_patient, assigned_patients_list) =
   });
 }
 
-
+const AddThisElementToRow = (row, text_in_element) => {
+  let new_element = document.createElement("td");
+  new_element.textContent = text_in_element;
+  row.insertAdjacentElement('beforeend', new_element);
+}
 
 const FillTheCategories = () => {
   FillTheAssignedPatientsCategory();
