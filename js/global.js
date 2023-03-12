@@ -312,6 +312,29 @@ const EditThePatientDashboard = (name) => {
   info_type.textContent = `You are a patient under the World Health Organization`;
 }
 
+const AssignServiceToPatient = async (employee_id) => {
+  const assign_service_info_url = baseurl + "AssignServices.php";
+  const patient_id = document.getElementById("Assign-services-patient-id-input").value;
+  const description = document.getElementById("Assign-services-description-input").value;
+  const cost = document.getElementById("Assign-services-cost-input").value;
+  const department_id = document.getElementById("Assign-services-department-id-input").value;
+  const status = "Approved";
+
+  data = new FormData();
+  data.append('patient_id', patient_id);
+  data.append('description', description);
+  data.append('cost', cost);
+  data.append('department_id', department_id);
+  data.append('employee_id', employee_id);
+  data.append('status', status);
+
+  const response = await ExecutePostAPI(assign_service_info_url, data);
+  console.log(response);
+  if(response.data.response == "Service Assigned!"){
+    alert("Service Assigned!");
+  }
+}
+
 
 //Page Functions
 
@@ -383,6 +406,7 @@ const LoadProfile = async () => {
   const profile_patient_edit_in_block_button = document.getElementById("Profile-patient-edit-in-block-button");
   const profile_employee_edit_in_block_button = document.getElementById("Profile-employee-edit-in-block-button");
   const profile_logout_button = document.getElementById("Profile-logout");
+  const assign_services_in_block_button = document.getElementById("Assign-services-in-block-button");
 
   for(let i=0; i<profile_category_buttons.length; i++){
     profile_category_buttons[i].addEventListener('click', (event) => EnableTheChosenCategory(event));
@@ -404,5 +428,6 @@ const LoadProfile = async () => {
 
   profile_patient_edit_in_block_button.addEventListener("click", () => EditPatientInformation(userid));
   profile_employee_edit_in_block_button.addEventListener("click", () => EditEmployeeInformation(userid));
+  assign_services_in_block_button.addEventListener("click", () => AssignServiceToPatient(userid));
   profile_logout_button.addEventListener("click", () => LogoutUser());
 }
