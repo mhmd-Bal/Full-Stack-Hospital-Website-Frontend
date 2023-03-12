@@ -173,6 +173,26 @@ const EnableTheAssignFunction = (event) => {
   }
 }
 
+const AssignPatient = async () => {
+  const assign_patient = baseurl + "AssignPatient.php";
+
+  let hospital_id = document.getElementById("Assign-patient-hospital-id").value;
+  let user_id = document.getElementById("Assign-patient-patient-id").value;
+  let is_active = document.getElementById("Assign-patient-is-active").value;
+  let date_joined = document.getElementById("Assign-patient-date-joined").value;
+  let date_left = document.getElementById("Assign-patient-date-left").value;
+
+  let data = new FormData();
+  data.append('hospital_id', hospital_id);
+  data.append('user_id', user_id);
+  data.append('is_active', is_active);
+  data.append('date_joined', date_joined);
+  data.append('date_left', date_left);
+
+  const response = await ExecutePostAPI(assign_patient, data);
+  console.log(response);
+}
+
 
 
 //Page Functions
