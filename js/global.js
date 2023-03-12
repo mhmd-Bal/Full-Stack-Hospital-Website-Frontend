@@ -124,7 +124,7 @@ const FillTheAssignedPatientsCategory = async () => {
   console.log(response);
   const assigned_patients = response.data;
   const assigned_patients_list = document.getElementById("Assigned-patients-list");
-  GetEachAssignedPatient(assigned_patients, assigned_patients_list);
+  GetEachAssignedUser(assigned_patients, assigned_patients_list);
 }
 
 const FillTheAssignedEmployeesCategory = async () => {
@@ -132,22 +132,22 @@ const FillTheAssignedEmployeesCategory = async () => {
   const response = await ExecuteGetAPI(assigned_employees_url);
   const assigned_employees = response.data;
   const assigned_employees_list = document.getElementById("Assigned-employees-list");
-  GetEachAssignedPatient(assigned_employees, assigned_employees_list);
+  GetEachAssignedUser(assigned_employees, assigned_employees_list);
 }
 
-const GetEachAssignedPatient = (assigned_patients, assigned_patients_list) => {
-  for(let i=0; i<assigned_patients.length; i++){
-    PrintAssignedPatientInTable(assigned_patients[i], assigned_patients_list);
+const GetEachAssignedUser = (assigned_users, assigned_users_list) => {
+  for(let i=0; i<assigned_users.length; i++){
+    PrintAssignedUserInTable(assigned_users[i], assigned_users_list);
   }
 }
 
-const PrintAssignedPatientInTable = (assigned_patient, assigned_patients_list) => {
+const PrintAssignedUserInTable = (assigned_user, assigned_users_list) => {
   let new_row = document.createElement("tr");
-  assigned_patients_list.insertAdjacentElement('beforeend', new_row);
+  assigned_users_list.insertAdjacentElement('beforeend', new_row);
 
-  const keys = Object.keys(assigned_patient);
+  const keys = Object.keys(assigned_user);
   keys.forEach((key, index) => {
-    AddThisElementToRow(new_row, eval(`assigned_patient.${key}`));
+    AddThisElementToRow(new_row, eval(`assigned_user.${key}`));
   });
 }
 
