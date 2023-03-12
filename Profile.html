@@ -37,23 +37,20 @@
         <div class="Control-panel">
             <div class="Profile-category-buttons" id="Profile-dashboard-button">Account Dashboard</div>
             <div class="Profile-category-buttons" id="Profile-edit-button">Edit Profile</div>
-            <div class="Profile-category-buttons" id="Profile-request-button">Request Services</div>
             <div class="Profile-category-buttons" id="Profile-assign-button">Assign Services</div>
+            <div class="Profile-category-buttons" id="Profile-request-button">Request Services</div>
             <div class="Profile-category-buttons" id="Profile-invoice-button">Show Invoice</div>
             <div class="Profile-category-buttons" id="Profile-logout">Log out</div>
         </div>
         <div class="Account-information-block" id="Profile-dashboard-block">
-            <h1 class="Welcome">Hello, User!</h1>
+            <h1 class="Welcome" id="Welcome-title">Hello, User!</h1>
             <div class="Info">
                 <div class="Account-info Info-sub-block">
-                    <h3 class="Info-title">Account information</h3>
-                    <div>First_name Last_name</div>
-                    <div>Email Address</div>
-                    <div>Password</div>
+                    <h3 class="Info-title" id="Info-title">Account information</h3>
+                    <div id="Info-type">Type</div>
                 </div>
-                <div class="Address Info-sub-block">
+                <div class="Address Info-sub-block" id="Extra-info">
                     <h3 class="Info-title">Address</h3>
-                    <div>Insert Address here</div>
                 </div>
             </div>
         </div>
@@ -67,8 +64,19 @@
                 <input id="Employee-date-joined-input" class="Input-for-user Profile-edit-employee-inputs" type="text" name="Date-joined" placeholder="Date Joined" required>
                 <input id="Employee-position-input" class="Input-for-user Profile-edit-employee-inputs" type="text" name="Position" placeholder="Position" required>
   
-                <button id="Profile-employee-edit-in-block-button" class="Profile-in-block-buttons" onclick="">Edit</button>
-                <button id="Profile-patient-edit-in-block-button" class="Profile-in-block-buttons" onclick="">Edit</button>
+                <button id="Profile-employee-edit-in-block-button" class="Profile-in-block-buttons">Edit</button>
+                <button id="Profile-patient-edit-in-block-button" class="Profile-in-block-buttons">Edit</button>
+            </div>
+        </div>
+        <div class="Account-information-block List-disabled" id="Assign-services-block">
+            <h1 class="Welcome" id="Assign-services-title">Assign Services</h1>
+            <div class="Info" id="Assign-services-information">
+                <input id="Assign-services-patient-id-input" class="Input-for-user Assign-services-employee-inputs" type="number" name="Patient_id" placeholder="Patient ID" required>
+                <input id="Assign-services-description-input" class="Input-for-user Assign-services-employee-inputs" type="text" name="Description" placeholder="Service Description" required>
+                <input id="Assign-services-cost-input" class="Input-for-user Assign-services-employee-inputs" type="number" name="Cost" placeholder="Cost in $" required>
+                <input id="Assign-services-department-id-input" class="Input-for-user Assign-services-employee-inputs" type="number" name="Department_id" placeholder="Department ID" required>
+  
+                <button id="Assign-services-in-block-button" class="Profile-in-block-buttons">Assign</button>
             </div>
         </div>
     </div>

@@ -289,11 +289,27 @@ const EditEmployeeInformation = async (user_id) => {
   data.append('user_id', user_id);
 
   const response = await ExecutePostAPI(edit_employee_info_url, data);
+  console.log(response);
   if(response.data.response == "Employee Info Added!"){
     alert("Employee Info Added!");
   }else if(response.data.response == "Employee Info Updated!"){
     alert("Employee Info Updated!");
   }
+}
+
+const EditTheEmployeeDashboard = (name) => {
+  const welcome_title = document.getElementById("Welcome-title");
+  const info_type = document.getElementById("Info-type");
+  const extra_info = document.getElementById("Extra-info");
+  welcome_title.textContent = `Hello, ${name}!`;
+  info_type.textContent = `You are an Employee of the World Health Organization`;
+}
+
+const EditThePatientDashboard = (name) => {
+  const welcome_title = document.getElementById("Welcome-title");
+  const info_type = document.getElementById("Info-type");
+  welcome_title.textContent = `Hello, ${name}!`;
+  info_type.textContent = `You are a patient under the World Health Organization`;
 }
 
 
@@ -378,10 +394,13 @@ const LoadProfile = async () => {
   if(authentication == "Successful"){
     if(usertype == 1){
       DisableEverythingRelatedToEmployees();
+      EditThePatientDashboard(name, usertype);
     }else if(usertype == 2){
       DisableEverythingRelatedToPatients();
+      EditTheEmployeeDashboard(name, usertype);
     }
   }
+
 
   profile_patient_edit_in_block_button.addEventListener("click", () => EditPatientInformation(userid));
   profile_employee_edit_in_block_button.addEventListener("click", () => EditEmployeeInformation(userid));
