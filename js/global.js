@@ -139,6 +139,15 @@ const FillTheAssignedEmployeesCategory = async () => {
   GetEachAssignedUser(assigned_employees, assigned_employees_list);
 }
 
+const FillThePendingRequestsCategory = async () => {
+  const pending_requests_url = baseurl + "GetAllPendingRequests.php";
+  const response = await ExecuteGetAPI(pending_requests_url);
+  const pending_requests = response.data;
+  console.log(response);
+  const pending_requests_list = document.getElementById("Requested-services-list");
+  GetEachAssignedUser(pending_requests, pending_requests_list);
+}
+
 const GetEachAssignedUser = (assigned_users, assigned_users_list) => {
   for(let i=0; i<assigned_users.length; i++){
     PrintAssignedUserInTable(assigned_users[i], assigned_users_list);
@@ -164,6 +173,7 @@ const AddThisElementToRow = (row, text_in_element) => {
 const FillTheCategories = () => {
   FillTheAssignedPatientsCategory();
   FillTheAssignedEmployeesCategory();
+  FillThePendingRequestsCategory();
 }
 
 const EnableTheAssignFunction = (event) => {
