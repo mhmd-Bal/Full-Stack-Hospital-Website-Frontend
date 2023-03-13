@@ -166,6 +166,11 @@ const GetTheSumOfInvoiceItemsCost = (data) => {
   return sum;
 }
 
+const DownloadInvoice = () => {
+  const invoice_block = document.getElementById("Invoice-block");
+  html2pdf().from(invoice_block).save();
+}
+
 const PrintTotalCost = (total) => {
   const invoice_information = document.getElementById("Invoice-information");
   const total_text = document.createElement("h4");
