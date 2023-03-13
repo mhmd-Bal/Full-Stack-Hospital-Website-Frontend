@@ -152,7 +152,7 @@ const FillTheInvoice = async (user_id) => {
   data.append('user_id',user_id);
   const response = await ExecutePostAPI(invoice_url,data);
   const total_cost = GetTheSumOfInvoiceItemsCost(response.data);
-  
+  PrintTotalCost(total_cost);
   const invoice_items = response.data;
   const invoice_items_list = document.getElementById("Invoice-information");
   GetEachAssignedUser(invoice_items, invoice_items_list);
@@ -164,6 +164,14 @@ const GetTheSumOfInvoiceItemsCost = (data) => {
     sum += data[i].cost;
   }
   return sum;
+}
+
+const PrintTotalCost = (total) => {
+  const invoice_information = document.getElementById("Invoice-information");
+  const total_text = document.createElement("h4");
+  invoice_information.insertAdjacentElement("afterend", total_text);
+  total_text.style.textAlign = "center";
+  total_text.textContent = `The Total Cost is: ${total}`;
 }
 
 const GetEachAssignedUser = (assigned_users, assigned_users_list) => {

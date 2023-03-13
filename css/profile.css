@@ -46,10 +46,16 @@ body{
 }
 
 .Invoice{
-  /* display: flex;
-  justify-content: start;
-  gap: 20px; */
   width: 100%;
+}
+
+.Invoice th{
+  text-align: left;
+  border-bottom: 2px solid black;
+}
+
+.Invoice th, td{
+  padding: 20px;
 }
 
 .Account-info{
@@ -108,4 +114,9 @@ body{
   color: white;
   font-size: 20px;
   cursor: pointer;
+}
+
+.Invoice-button-wrapper{
+  display: flex;
+  justify-content: center;
 }
