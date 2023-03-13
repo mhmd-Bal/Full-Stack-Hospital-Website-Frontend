@@ -224,6 +224,19 @@ const AssignEmployee = async () => {
   ReloadIfSuccessful(response.data.response);
 }
 
+const ApproveRequest = async () => {
+  const approve_request_url = baseurl + "ApproveRequest.php";
+  let service_id = document.getElementById("Answer-request-Service-id").value;
+
+  let data = new FormData();
+  data.append('service_id', service_id);
+
+  const response = await ExecutePostAPI(approve_request_url, data);
+  const assign_function_employees_title = document.getElementById("Answer-request-function-title");
+  PrintMessage(assign_function_employees_title, response.data.response);
+  ReloadIfSuccessful(response.data.response);
+}
+
 const PrintMessage = (place, message) => {
   place.textContent = message; 
 }
