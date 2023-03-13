@@ -146,6 +146,14 @@ const FillThePendingRequestsCategory = async () => {
   GetEachAssignedUser(pending_requests, pending_requests_list);
 }
 
+const FillTheInvoice = async () => {
+  const invoice_url = baseurl + "GetAllInvoiceItems.php";
+  const response = await ExecuteGetAPI(invoice_url);
+  const invoice_item = response.data;
+  const invoice_item_list = document.getElementById("Invoice-information");
+  GetEachAssignedUser(invoice_item, invoice_item_list);
+}
+
 const GetEachAssignedUser = (assigned_users, assigned_users_list) => {
   for(let i=0; i<assigned_users.length; i++){
     PrintAssignedUserInTable(assigned_users[i], assigned_users_list);
@@ -514,6 +522,7 @@ const LoadProfile = async () => {
     if(usertype == 1){
       DisableEverythingRelatedToEmployees();
       EditThePatientDashboard(name, userid);
+      FillTheInvoice();
     }else if(usertype == 2){
       DisableEverythingRelatedToPatients();
       EditTheEmployeeDashboard(name, userid);

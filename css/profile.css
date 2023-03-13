@@ -45,6 +45,13 @@ body{
   width: 100%;
 }
 
+.Invoice{
+  /* display: flex;
+  justify-content: start;
+  gap: 20px; */
+  width: 100%;
+}
+
 .Account-info{
   width: 43%;
 }
