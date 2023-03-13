@@ -345,12 +345,12 @@ const EditEmployeeInformation = async (user_id) => {
   }
 }
 
-const EditTheEmployeeDashboard = (name) => {
+const EditTheEmployeeDashboard = (name, user_id) => {
   const welcome_title = document.getElementById("Welcome-title");
   const info_type = document.getElementById("Info-type");
-  const extra_info = document.getElementById("Extra-info");
   welcome_title.textContent = `Hello, ${name}!`;
   info_type.textContent = `You are an Employee of the World Health Organization`;
+  FillTheExtraEmployeeInfo(user_id)
 }
 
 const EditThePatientDashboard = (name, user_id) => {
@@ -359,6 +359,23 @@ const EditThePatientDashboard = (name, user_id) => {
   welcome_title.textContent = `Hello, ${name}!`;
   info_type.textContent = `You are a patient under the World Health Organization`;
   FillTheExtraPatientInfo(user_id);
+}
+
+const FillTheExtraEmployeeInfo = async (user_id) => {
+  const get_employee_extra_info_url = baseurl + "GetEmployeeExtraInfo.php";
+  const extra_info = document.getElementById("Extra-info");
+  const data = new FormData();
+  data.append('user_id', user_id);
+  const response = await ExecutePostAPI(get_employee_extra_info_url, data);
+  const ssn_text = document.createElement("div");
+  const date_joined_text = document.createElement("div");
+  const position_text = document.createElement("div");
+  extra_info.insertAdjacentElement('beforeend', ssn_text);
+  extra_info.insertAdjacentElement('beforeend', date_joined_text);
+  extra_info.insertAdjacentElement('beforeend', position_text);
+  ssn_text.textContent = `SSN: ${response.data.ssn}`;
+  date_joined_text.textContent = `Date Joined: ${response.data.date_joined}`;
+  position_text.textContent = `Position: ${response.data.position}`;
 }
 
 const FillTheExtraPatientInfo = async (user_id) => {
@@ -391,7 +408,6 @@ const AssignServiceToPatient = async (employee_id) => {
 
   const response = await ExecutePostAPI(assign_service_info_url, data);
   alert(response.data.response);
-
 }
 
 const RequestServiceFromAdmin = async (patient_id) => {
@@ -500,7 +516,7 @@ const LoadProfile = async () => {
       EditThePatientDashboard(name, userid);
     }else if(usertype == 2){
       DisableEverythingRelatedToPatients();
-      EditTheEmployeeDashboard(name, usertype);
+      EditTheEmployeeDashboard(name, userid);
     }
   }
 
