@@ -125,7 +125,6 @@ const EnableTheChosenCategory = (event) => {
 const FillTheAssignedPatientsCategory = async () => {
   const assigned_patients_url = baseurl + "GetAllAssignedPatients.php";
   const response = await ExecuteGetAPI(assigned_patients_url);
-  console.log(response);
   const assigned_patients = response.data;
   const assigned_patients_list = document.getElementById("Assigned-patients-list");
   GetEachAssignedUser(assigned_patients, assigned_patients_list);
@@ -143,7 +142,6 @@ const FillThePendingRequestsCategory = async () => {
   const pending_requests_url = baseurl + "GetAllPendingRequests.php";
   const response = await ExecuteGetAPI(pending_requests_url);
   const pending_requests = response.data;
-  console.log(response);
   const pending_requests_list = document.getElementById("Requested-services-list");
   GetEachAssignedUser(pending_requests, pending_requests_list);
 }
@@ -242,7 +240,6 @@ const ApproveRequest = async () => {
   data.append('service_id', service_id);
 
   const response = await ExecutePostAPI(approve_request_url, data);
-  console.log(response);
   const assign_function_employees_title = document.getElementById("Answer-request-function-title");
   PrintMessage(assign_function_employees_title, response.data.response);
   ReloadIfSuccessful(response.data.response);
@@ -256,10 +253,22 @@ const DeclineRequest = async () => {
   data.append('service_id', service_id);
 
   const response = await ExecutePostAPI(decline_request_url, data);
-  console.log(response);
   const assign_function_employees_title = document.getElementById("Answer-request-function-title");
   PrintMessage(assign_function_employees_title, response.data.response);
   ReloadIfSuccessful(response.data.response);
+}
+
+const PrintAdminStatistics = async () => {
+  const get_statistics = baseurl + "GetStatistics.php";
+  const number_of_patients = document.getElementById("Number-of-patients");
+  const number_of_employees = document.getElementById("Number-of-employees");
+  const number_of_hospitals = document.getElementById("Number-of-hospitals");
+
+  const response = await ExecuteGetAPI(get_statistics);
+  console.log(response.data);
+  number_of_patients.textContent += response.data.patients_number;
+  number_of_employees.textContent += response.data.employees_number;
+  number_of_hospitals.textContent += response.data.hospitals_number;
 }
 
 const PrintMessage = (place, message) => {
@@ -433,6 +442,7 @@ const LoadAdmin = async () => {
   const function_buttons = document.getElementsByClassName("Function-buttons");
   CheckIfAdmin();
   logout_button.addEventListener('click', () => LogoutUser());
+  PrintAdminStatistics();
   
   for(let i=0; i<category_buttons.length; i++){
     category_buttons[i].addEventListener('click', (event) => EnableTheChosenCategory(event));
