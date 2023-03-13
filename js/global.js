@@ -353,11 +353,26 @@ const EditTheEmployeeDashboard = (name) => {
   info_type.textContent = `You are an Employee of the World Health Organization`;
 }
 
-const EditThePatientDashboard = (name) => {
+const EditThePatientDashboard = (name, user_id) => {
   const welcome_title = document.getElementById("Welcome-title");
   const info_type = document.getElementById("Info-type");
   welcome_title.textContent = `Hello, ${name}!`;
   info_type.textContent = `You are a patient under the World Health Organization`;
+  FillTheExtraPatientInfo(user_id);
+}
+
+const FillTheExtraPatientInfo = async (user_id) => {
+  const get_patient_extra_info_url = baseurl + "GetPatientExtraInfo.php";
+  const extra_info = document.getElementById("Extra-info");
+  const data = new FormData();
+  data.append('user_id', user_id);
+  const response = await ExecutePostAPI(get_patient_extra_info_url, data);
+  const blood_type_text = document.createElement("div");
+  const ehr_text = document.createElement("div");
+  extra_info.insertAdjacentElement('beforeend', blood_type_text);
+  extra_info.insertAdjacentElement('beforeend', ehr_text);
+  blood_type_text.textContent = `Blood type: ${response.data.blood_type}`;
+  ehr_text.textContent = `EHR: ${response.data.ehr}`;
 }
 
 const AssignServiceToPatient = async (employee_id) => {
@@ -482,7 +497,7 @@ const LoadProfile = async () => {
   if(authentication == "Successful"){
     if(usertype == 1){
       DisableEverythingRelatedToEmployees();
-      EditThePatientDashboard(name, usertype);
+      EditThePatientDashboard(name, userid);
     }else if(usertype == 2){
       DisableEverythingRelatedToPatients();
       EditTheEmployeeDashboard(name, usertype);
