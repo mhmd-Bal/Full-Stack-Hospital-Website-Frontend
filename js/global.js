@@ -179,6 +179,16 @@ const DownloadInvoice = () => {
   html2pdf().from(invoice_block).save();
 }
 
+const BuyTheMedication = async (user_id) => {
+  const medications_url = baseurl + "BuyTheMedication.php";
+  const medication_id = document.getElementById("Medication-id-input").value;
+  const data = new FormData();
+  data.append('user_id', user_id);
+  data.append('medication_id', medication_id);
+  const response = await ExecutePostAPI(medications_url,data);
+  console.log(response);
+}
+
 const PrintTotalCost = (total) => {
   const invoice_information = document.getElementById("Invoice-information");
   const total_text = document.createElement("h4");
@@ -545,6 +555,7 @@ const LoadProfile = async () => {
   const profile_logout_button = document.getElementById("Profile-logout");
   const assign_services_in_block_button = document.getElementById("Assign-services-in-block-button");
   const request_services_in_block_button = document.getElementById("Request-services-in-block-button");
+  const medication_in_block_button = document.getElementById("Medication-in-block-button");
 
   for(let i=0; i<profile_category_buttons.length; i++){
     profile_category_buttons[i].addEventListener('click', (event) => EnableTheChosenCategory(event));
@@ -570,5 +581,6 @@ const LoadProfile = async () => {
   profile_employee_edit_in_block_button.addEventListener("click", () => EditEmployeeInformation(userid));
   assign_services_in_block_button.addEventListener("click", () => AssignServiceToPatient(userid));
   request_services_in_block_button.addEventListener("click", () => RequestServiceFromAdmin(userid));
+  medication_in_block_button.addEventListener("click", () => BuyTheMedication(userid));
   profile_logout_button.addEventListener("click", () => LogoutUser());
 }
