@@ -151,9 +151,19 @@ const FillTheInvoice = async (user_id) => {
   const data = new FormData();
   data.append('user_id',user_id);
   const response = await ExecutePostAPI(invoice_url,data);
+  const total_cost = GetTheSumOfInvoiceItemsCost(response.data);
+  
   const invoice_items = response.data;
   const invoice_items_list = document.getElementById("Invoice-information");
   GetEachAssignedUser(invoice_items, invoice_items_list);
+}
+
+const GetTheSumOfInvoiceItemsCost = (data) => {
+  let sum = 0;
+  for (let i=0; i<data.length; i++){
+    sum += data[i].cost;
+  }
+  return sum;
 }
 
 const GetEachAssignedUser = (assigned_users, assigned_users_list) => {
