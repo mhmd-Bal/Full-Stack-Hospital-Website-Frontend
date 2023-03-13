@@ -80,14 +80,31 @@
                 <th>Date Left</th>
                 <th>Is Active</th>
               </tr>
-          </table>
+            </table>
           </div>
         </div>
         <div class="List-block List-disabled" id="Services-block">
           <div class="List-name-and-controls">
-            <h3 class="List-title" id="Services-title">List of Services</h3>
+            <h3 class="List-title" id="Services-title">List of Requested Services</h3>
+            <div class="List-controls">
+              <div class="Admin-buttons Function-buttons" id="Answer-request-button">Answer a Request</div>
+            </div>
           </div>
-          <div class="Table-list"></div>
+          <div class="Table-list">
+            <table class="The-actual-list" id="Requested-services-list">
+              <tr>
+                <th>ID</th>
+                <th>Patient ID</th>
+                <th>Patient Name</th>
+                <th>Employee ID</th>
+                <th>Employee Name</th>
+                <th>Department ID</th>
+                <th>Department Name</th>
+                <th>Description</th>
+                <th>Cost</th>
+              </tr>
+            </table>
+          </div>
         </div>
         <div class="List-block List-disabled" id="Assignfunction-patients-block">
           <div class="List-name-and-controls">
@@ -122,6 +139,21 @@
               <input id="Assign-employee-date-joined" class="Input-for-user Assign-employee-inputs" type="text" name="date-joined" placeholder="Date Joined" required>
               <input id="Assign-employee-date-left" class="Input-for-user Assign-employee-inputs" type="text" name="date-left" placeholder="Date Left" required>
               <button id="Assign-employee-in-block-button" class="Admin-in-block-buttons" onclick="AssignEmployee()">Assign</button>
+            </div>
+          </div>
+        </div>
+        <div class="List-block List-disabled" id="Answer-request-function-block">
+          <div class="List-name-and-controls">
+            <h3 class="List-title" id="Answer-request-function-title">Approve or Decline a Request</h3>
+            <div class="List-controls">
+              <div class="Admin-buttons">Answer a Request</div>
+            </div>
+          </div>
+          <div class="Table-list" id="Answer-request-function-inputs">
+            <div class="Assign-block">
+              <input id="Answer-request-Service-id" class="Input-for-user Answer-request-inputs" type="number" name="Service-id" placeholder="Service ID" required>
+              <button id="Approve-request-in-block-button" class="Admin-in-block-buttons" onclick="">Approve</button>
+              <button id="Decline-request-in-block-button" class="Admin-in-block-buttons" onclick="">Decline</button>
             </div>
           </div>
         </div>

@@ -174,6 +174,9 @@ const EnableTheAssignFunction = (event) => {
   }else if(event.currentTarget.index == 1){
     event.currentTarget.lists[5].classList.remove("List-disabled");
     event.currentTarget.buttons[2].classList.add("Button-enabled");
+  }else if(event.currentTarget.index == 2){
+    event.currentTarget.lists[6].classList.remove("List-disabled");
+    event.currentTarget.buttons[3].classList.add("Button-enabled");
   }
 }
 
