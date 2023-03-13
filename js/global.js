@@ -146,6 +146,14 @@ const FillThePendingRequestsCategory = async () => {
   GetEachAssignedUser(pending_requests, pending_requests_list);
 }
 
+const FillTheMedicationCategory = async () => {
+  const medications_url = baseurl + "GetAllMedications.php";
+  const response = await ExecuteGetAPI(medications_url);
+  const medications = response.data;
+  const medications_list = document.getElementById("Medication-information");
+  GetEachAssignedUser(medications, medications_list);
+}
+
 const FillTheInvoice = async (user_id) => {
   const invoice_url = baseurl + "GetAllInvoiceItems.php";
   const data = new FormData();
@@ -330,10 +338,12 @@ const DisableEverythingRelatedToEmployees = () => {
 const DisableEverythingRelatedToPatients = () => {
   const profile_request_button = document.getElementById("Profile-request-button");
   const profile_invoice_button = document.getElementById("Profile-invoice-button");
+  const profile_medication_button = document.getElementById("Profile-medication-button");
   const profile_edit_patient_inputs = document.getElementsByClassName("Profile-edit-patient-inputs");
   const profile_patient_edit_in_block_button = document.getElementById("Profile-patient-edit-in-block-button");
   profile_invoice_button.classList.add("List-disabled");
   profile_request_button.classList.add("List-disabled");
+  profile_medication_button.classList.add("List-disabled");
   profile_patient_edit_in_block_button.classList.add("List-disabled");
   for(let i=0; i<profile_edit_patient_inputs.length; i++){
     profile_edit_patient_inputs[i].classList.add("List-disabled");
@@ -546,6 +556,7 @@ const LoadProfile = async () => {
   if(authentication == "Successful"){
     if(usertype == 1){
       DisableEverythingRelatedToEmployees();
+      FillTheMedicationCategory();
       EditThePatientDashboard(name, userid);
       FillTheInvoice(userid);
     }else if(usertype == 2){
